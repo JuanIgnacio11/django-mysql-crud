@@ -22,3 +22,22 @@ services:
     stdin_open: true
     tty: true
     
+  db-mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: cruddemo
+      MYSQL_USER: DelgadoIgn
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports: 
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db-mysql
+      MYSQL_ROOT_PASSWORD: password
